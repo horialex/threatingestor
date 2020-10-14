@@ -1,0 +1,56 @@
+# This is an example ThreatIngestor config file with some preconfigured RSS
+# sources, feeding extracted artifacts into a CSV file.
+general:
+    # Run forever, check feeds once an hour.
+    daemon: true
+    sleep: 500
+    state_path: state3.db
+
+credentials:
+  - name: misp-auth
+    url: http://127.0.0.1
+    key: UTfaasfFv2TlXnrpNHLRFHUawhI4zgRX3m0rNOE3
+    ssl: False
+
+  - name: twitter-auth
+    # https://dev.twitter.com/oauth/overview/application-owner-access-tokens
+    api_key: W8eJ0Lp69QG3l3EU7Gg5z2lhX
+    api_secret_key: NkX8f4wQVqWmlJaLgvsPpEbv9Iiyl8PbBz9kFN813wNPUCvA6i
+    access_token: 1137350809254006784-7ijdwlChYMUASUlYyyoY1pXfigvXAy
+    access_token_secret: 8QPEcx8yRA2oau87L5OiC1WFe4Kg11oQLnjRXPUDZikfN
+
+
+sources:
+# A few threat intel blogs to get you started!
+#  - name: rss-inquest
+#    module: rss
+#    url: https://inquest.net/blog/rss
+#    feed_type: messy
+    
+#  - name: twitter-feed-c2
+#    module: twitter
+#    credentials: twitter-auth
+#    owner_screen_name: InQuest
+#    slug: c2-feed
+
+#  - name: twitter-search-opendir
+#    module: twitter
+#    credentials: twitter-auth
+#    q: '#opendir'
+  
+  - name: twitter-search-vt
+    module: twitter
+    credentials: twitter-auth
+    q: virustotal.com
+
+
+operators:
+    # This is just an example CSV output, to make this a valid config.
+  - name: csvfile
+    module: csv
+    filename: outputRSSA.csv
+  
+  - name: misp
+    module: misp
+    credentials: misp-auth
+
