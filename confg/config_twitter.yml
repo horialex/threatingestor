@@ -1,0 +1,75 @@
+# This is an example ThreatIngestor config file with some preconfigured RSS
+# sources, feeding extracted artifacts into a CSV file.
+general:
+    # Run forever, check feeds once an hour.
+    daemon: true
+    sleep: 500
+    state_path: state3.db
+
+credentials:
+  - name: misp-auth
+    url: http://127.0.0.1
+    key: UTfaasfFv2TlXnrpNHLRFHUawhI4zgRX3m0rNOE3
+    ssl: False
+
+  - name: twitter-auth
+    # https://dev.twitter.com/oauth/overview/application-owner-access-tokens
+    api_key: W8eJ0Lp69QG3l3EU7Gg5z2lhX
+    api_secret_key: NkX8f4wQVqWmlJaLgvsPpEbv9Iiyl8PbBz9kFN813wNPUCvA6i
+    access_token: 1137350809254006784-7ijdwlChYMUASUlYyyoY1pXfigvXAy
+    access_token_secret: 8QPEcx8yRA2oau87L5OiC1WFe4Kg11oQLnjRXPUDZikfN
+    defanged_only: false
+
+
+sources:
+#Inca nu stiu exact cum functioneaza
+#DA
+#  - name: twitter-bad-packets
+#    module: twitter
+#    credentials: twitter-auth
+#    q: '#opendir'
+
+#DA
+#  - name: twitter-bad-packets
+#    module: twitter
+#    credentials: twitter-auth
+#    q: '#malware'
+
+#DA
+#  - name: twitter-bad-packets
+#    module: twitter
+#    credentials: twitter-auth
+#    q: '#malware'
+
+#DA
+#  - name: twitter-search-bad-packets
+#    module: twitter
+#    credentials: twitter-auth
+#    q: 'bad packets'
+
+#DA
+#  - name: twitter-bad-packets-timeline
+#    module: twitter
+
+#    screen_name: bad_packets
+
+#  - name: https://twitter.com/pollo290987
+#    module: twitter
+#    credentials: twitter-auth
+#    screen_name: pollo290987
+
+  - name: https://twitter.com/DissectMalware
+    module: twitter
+    credentials: twitter-auth
+    screen_name: DissectMalware
+
+operators:
+    # This is just an example CSV output, to make this a valid config.
+  - name: csvfile
+    module: csv
+    filename: output_twitter.csv
+  
+  - name: misp
+    module: misp
+    credentials: misp-auth
+
