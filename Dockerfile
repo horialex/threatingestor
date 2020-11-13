@@ -20,8 +20,9 @@ RUN alias python3='/usr/bin/python3.6' && alias python='/usr/bin/python2.7'
 RUN pip3 install threatingestor && pip3 install threatingestor[all] && pip3 install loguru
 #RUN pip install threatingestor && pip install threatingestor[all]
 
-
 RUN pip3 install pymisp==2.4.119 && pip install pymisp==2.4.119
+RUN pip3 install feedparser==5.2.1
+
 RUN alias python3='/usr/bin/python3.6'
     
 ENTRYPOINT ["/bin/bash"]
